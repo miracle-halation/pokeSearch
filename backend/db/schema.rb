@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_094830) do
   enable_extension "plpgsql"
 
   create_table "pokemons", force: :cascade do |t|
+    t.string "pokemon_id"
     t.string "name", limit: 255, null: false
     t.integer "hp", null: false
     t.integer "attack", null: false
