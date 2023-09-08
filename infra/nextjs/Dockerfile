@@ -8,4 +8,4 @@ RUN apk update && \
  apk add git && \
  yarn global add create-nuxt-app
 
-EXPOSE 8080
+EXPOSE 3000
