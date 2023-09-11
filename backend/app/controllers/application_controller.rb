@@ -1,7 +1,9 @@
 require 'jwt'
 
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
   before_action :authenticate
+  after_action :verify_authorized
 
   def authenticate
     token = request.headers['Authorization']&.split(' ')&.last # Authorizationヘッダーからトークンを取得
@@ -24,6 +26,10 @@ class ApplicationController < ActionController::API
     else
       self.not_authenticated
     end
+  end
+
+  def pundit_user
+    @current_user
   end
 
   private

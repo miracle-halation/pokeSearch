@@ -10,6 +10,8 @@ class V1::PokemonController < ApplicationController
   end
 
   def create
+    authorize Pokemon
+
     @pokemon = PokemonService.create_pokemon(pokemon_params)
     if @pokemon.persisted?
       render json: { message: 'Successfully created', pokemon: @pokemon }, status: :ok
@@ -19,6 +21,8 @@ class V1::PokemonController < ApplicationController
   end
 
   def update
+    authorize Pokemon
+
     @pokemon = PokemonService.find_pokemon(params[:id])
     if PokemonService.update_pokemon(@pokemon, pokemon_params)
       render json: { message: 'Successfully updated', pokemon: @pokemon }, status: :ok
@@ -28,6 +32,8 @@ class V1::PokemonController < ApplicationController
   end
 
   def destroy
+    authorize Pokemon
+
     @pokemon = PokemonService.find_pokemon(params[:id])
     if PokemonService.delete_pokemon(@pokemon)
       render json: { message: 'Pokemon was successfully deleted.' }, status: :ok
@@ -39,6 +45,6 @@ class V1::PokemonController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :hp, :attack, :block, :contact, :diffence, :speed, :type1, :type2, :avility1, :avility2, :hidden_avility)
+    params.require(:pokemon).permit(:pokemon_id, :name, :hp, :attack, :block, :contact, :diffence, :speed, :type1, :type2, :avility1, :avility2, :hidden_avility)
   end
 end
