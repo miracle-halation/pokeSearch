@@ -7,7 +7,7 @@ class PokemonPolicy < ApplicationPolicy
     super
   end
 
-	def create?
+  def create?
     user.leader? || user.manager?
   end
 

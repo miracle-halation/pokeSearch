@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Pokemon, type: :model do
-	let(:pokemon) { build(:pokemon) } # Pokemonオブジェクトを作成する例
+  let(:pokemon) { build(:pokemon) } # Pokemonオブジェクトを作成する例
 
   it 'is valid with valid attributes' do
     expect(pokemon).to be_valid
