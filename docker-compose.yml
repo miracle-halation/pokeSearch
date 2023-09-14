@@ -15,17 +15,33 @@ services:
       context: ./backend
       dockerfile: ./../infra/rails/Dockerfile
     image: poke-rails
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
       - ./backend/:/backend
     ports:
-      - "3000:3000"
+      - "8080:8080"
     depends_on:
       - db
     stdin_open: true
     tty: true
+  web:
+    build:
+      context: ./frontend
+      dockerfile: ./../infra/nextjs/Dockerfile
+    image: poke-nextjs
+    ports:
+      - "3000:3000"
+    command: yarn dev
+    volumes:
+      - "./frontend:/frontend"
+      - node_modules_volume:/front/node_modules
+    tty: true
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
 volumes:
   postgres_volume:
+  node_modules_volume:
