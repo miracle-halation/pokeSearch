@@ -1,10 +1,19 @@
 class V1::PokemonController < ApplicationController
+  include Pagination
+
   def index
+    authorize Pokemon
+
+    paged = params[:paged]
+    per = params[:per].present? ? params[:per] : 10
     @pokemons = PokemonService.all_pokemons
-    render json: { pokemons: @pokemons }, status: :ok
+    @pokemon_paginatied = @pokemons.page(paged).per(per)
+    render json: { pokemons: @pokemon_paginatied }, status: :ok
   end
 
   def show
+    authorize Pokemon
+
     @pokemon = PokemonService.find_pokemon(params[:id])
     render json: { pokemon: @pokemon }, status: :ok
   end
