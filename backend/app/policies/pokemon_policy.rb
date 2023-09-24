@@ -26,4 +26,8 @@ class PokemonPolicy < ApplicationPolicy
   def destroy?
     user.manager?
   end
+
+  def search?
+    true
+  end
 end

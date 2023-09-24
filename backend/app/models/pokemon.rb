@@ -4,4 +4,18 @@ class Pokemon < ApplicationRecord
   validates :type1, :avility1, presence: true, length: { maximum: 255 }
   validates :pokemon_id, uniqueness: true, allow_blank: true
   validates :type2, :avility2, :hidden_avility, length: { maximum: 255 }
+
+  def self.search(data)
+    query = self.all
+
+    if data.present?
+      name = data[:name]
+      pokemon_id = data[:pokemon_id]
+
+      query = query.where(name: name) if name.present?
+      query = query.where(pokemon_id: pokemon_id) if pokemon_id.present?
+    end
+
+    query
+  end
 end

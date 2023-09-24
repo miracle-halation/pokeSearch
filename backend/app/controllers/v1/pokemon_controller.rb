@@ -6,7 +6,7 @@ class V1::PokemonController < ApplicationController
 
     paged = params[:paged]
     per = params[:per].present? ? params[:per] : 10
-    @pokemons = PokemonService.all_pokemons
+    @pokemons = PokemonService.all_pokemons(params[:query])
     @pokemon_paginatied = @pokemons.page(paged).per(per)
     render json: { pokemons: @pokemon_paginatied }, status: :ok
   end

@@ -1,6 +1,6 @@
 class PokemonService
-  def self.all_pokemons
-    Pokemon.order(created_at: :desc)
+  def self.all_pokemons(query)
+    Pokemon.search(query).order(created_at: :desc)
   end
 
   def self.find_pokemon(id)
