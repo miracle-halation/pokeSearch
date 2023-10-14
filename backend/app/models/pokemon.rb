@@ -1,4 +1,7 @@
 class Pokemon < ApplicationRecord
+  has_many :pokemon_type
+  has_many :types, through: :pokemon_type
+
   validates :name, presence: true, length: { maximum: 255 }
   validates :hp, :attack, :block, :contact, :diffence, :speed, presence: true, numericality: { only_integer: true }
   validates :type1, :avility1, presence: true, length: { maximum: 255 }
