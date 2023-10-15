@@ -7,6 +7,14 @@ class PokemonPolicy < ApplicationPolicy
     super
   end
 
+  def index?
+    true
+  end
+
+  def show?
+    true
+  end
+
   def create?
     user.leader? || user.manager?
   end
@@ -17,5 +25,9 @@ class PokemonPolicy < ApplicationPolicy
 
   def destroy?
     user.manager?
+  end
+
+  def search?
+    true
   end
 end

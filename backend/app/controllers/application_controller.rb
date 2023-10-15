@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
         decoded_token = JWT.decode(token, nil, false)
         uid = decoded_token[0]['sub'] # Firebase UIDを取得
         # Firebaseに対して認証を行うか、Firebase UIDを使用してユーザーを特定します。
-        user = User.find_by(uid:)
+        user = User.find_by(uid: uid)
 
         if user
           @current_user = user
