@@ -32,8 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_092553) do
     t.integer "contact", null: false
     t.integer "diffence", null: false
     t.integer "speed", null: false
-    t.string "type1", limit: 255, null: false
-    t.string "type2", limit: 255
     t.string "avility1", limit: 255, null: false
     t.string "avility2", limit: 255
     t.string "hidden_avility", limit: 255

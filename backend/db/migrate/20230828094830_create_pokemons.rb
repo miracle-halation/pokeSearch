@@ -9,8 +9,6 @@ class CreatePokemons < ActiveRecord::Migration[7.0]
       t.integer   :contact, null: false
       t.integer   :diffence, null: false
       t.integer   :speed, null: false
-      t.string    :type1, null: false, limit: 255
-      t.string    :type2, limit: 255
       t.string    :avility1, null: false, limit: 255
       t.string    :avility2, limit: 255
       t.string    :hidden_avility, limit: 255
