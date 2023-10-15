@@ -11,6 +11,6 @@ class V1::SearchController < ApplicationController
 
 	private
 	def pokemon_params
-    params.require(:pokemon).permit(:pokemon_id, :name)
+    params.require(:pokemon).permit(:pokemon_id, :name, :type_name)
   end
 end
